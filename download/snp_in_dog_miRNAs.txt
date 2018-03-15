@@ -1,0 +1,5 @@
+snp_id	chr	snp_pos	pre_miRNA	acc	strand	start	end	on_premiR	miRNA	on_miRNA	seed
+rs21941389	chr1	52073011	cfa-mir-1836	MI0008014	-	52073038	52072982	28	Null	0	Null
+rs9215079	chr31	33123667	cfa-mir-802	MI0010427	+	33123625	33123714	43	Null	0	Null
+rs24300465	chr6	15464644	cfa-mir-589	MI0010416	+	15464573	15464644	72	Null	0	Null
+rs9209873	chr7	9606893	cfa-mir-29b-2	MI0008121	-	9606916	9606851	24	Null	0	Null

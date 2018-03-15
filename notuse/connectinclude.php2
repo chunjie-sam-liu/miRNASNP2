@@ -1,0 +1,12 @@
+
+
+<?
+
+$ip="localhost";
+$user='snp';
+$password='microRNA';
+$db="miRNA_SNP";
+$conn=mysql_connect($ip,$user,$password) ;
+mysql_select_db($db,$conn) ;
+
+?>

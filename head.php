@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<?php
+	// **PREVENTING SESSION HIJACKING**
+	// Prevents javascript XSS attacks aimed to steal the session ID
+	ini_set('session.cookie_httponly', 1);
+
+	// **PREVENTING SESSION FIXATION**
+	// Session ID cannot be passed through URLs
+	ini_set('session.use_only_cookies', 1);
+
+	// Uses a secure connection (HTTPS) if possible
+	ini_set('session.cookie_secure', 1);
+	?>
+<?php
+ 	# Clickjacking: X-Frame-Options header missing
+	# Severity: Low
+	header('X-Frame-Options: GOFORIT');
+	?>
+<?php
+	// $value=md5("DefendCSRF");
+	// setcookie("cookie", $value, time()+3600);
+	// HTML form without CSRF protection
+	// Severity: Medium
+	if (!isset($_SESSION['token'])) {
+    $token = md5(uniqid(rand(), TRUE));
+    $_SESSION['token'] = $token;
+    $_SESSION['token_time'] = time();
+	}
+	else
+	{
+	    $token = $_SESSION['token'];
+	}
+
+
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Lang" content="en" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="miRNASNP" content="miRNA SNP,microRNA SNP,single nucleotide polymorphisms,miRNA database,microRNA database, SNP database,SNP in miRNA,SNP in miRNA target,miRNA database, microRNA,SNP,database, " />
+	<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="main.css" type="text/css" />
+	<link rel="stylesheet" href="css/theme.bootstrap.css" type="text/css" />
+
+	<!--include jquery-->
+	<script type="text/javascript" src="jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tablesorter.widgets.min.js"></script>
+
+	<script type="text/javascript" src="respond.min.js"></script>
+	<script type="text/javascript" src="html5shiv.js"></script>
+
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>
+	<?php echo $page_title ?>
+</title>
+
+<script type="text/javascript">
+ window.onload=window.onresize=function(){
+ if(document.getElementById("left").clientHeight<document.getElementById("content").clientHeight){
+ document.getElementById("left").style.height=document.getElementById("content").offsetHeight+"px";
+ }
+ else{
+ document.getElementById("content").style.height=document.getElementById("left").offsetHeight+"px";
+ }
+ }
+
+var D=new Function('obj','return document.getElementById(obj)');
+  function showDiv(sobj,num,total)
+  { var tri="trianglefold"+num;
+    var triu="triangleunfold"+num;
+    D(tri).style.display="none";
+	D(triu).style.display="block";
+    for(var id = 1;id<=total;id++)
+	{  try{ var ss = sobj + id;
+             var nss = sobj + "nav" + id;
+             var tri="trianglefold"+id;
+             var triu="triangleunfold"+id;
+			 if(id==num)
+			 { D(ss).style.display="block";
+			   D(nss).className="active";
+			 }
+			 else
+			 { D(ss).style.display="none";
+               D(nss).className="unactive";
+			   D(tri).style.display="block";
+	           D(triu).style.display="none";
+			 }
+          }
+	  catch(e)
+	     {
+		 }
+   }
+  }
+  function choice(sobj)
+  {var id1="options";
+   var id2="choice"+sobj;
+   D(id1).style.display="none";
+   D(id2).style.display="block";
+  }
+  function backchoice(sobj)
+  { var id1="options";
+   var id2="choice"+sobj;
+   D(id1).style.display="block";
+   D(id2).style.display="none";
+  }
+  function active(sobj)
+  { var id1="option_"+sobj;
+    var id2="newoption_"+sobj;
+	D(id1).style.display="none";
+	D(id2).style.display="block";
+  }
+  function unactive(sobj)
+  { var id1="option_"+sobj;
+    var id2="newoption_"+sobj;
+	D(id1).style.display="block";
+	D(id2).style.display="none";
+  }
+  var act;
+function over(s,nMax){
+  var obj=document.getElementById(s);
+  var h = parseInt(obj.offsetHeight);
+  if (h < nMax){
+    obj.style.height = (h + 20)+"px";
+    clearTimeout(act);
+    act = setTimeout("over('"+s+"',"+nMax+")", 10);
+  }
+}
+function out(s,nMin)
+{
+  var obj=document.getElementById(s);
+  var h = parseInt(obj.offsetHeight);
+  if (h > nMin)
+   {
+    obj.style.height = (h - 20)+"px";
+    clearTimeout(act);
+    act = setTimeout("out('"+s+"',"+nMin+")", 10);
+	}
+}
+var pp=0;
+function change()
+{if(pp==0)
+   {over('thespecies',350);
+    pp=1;
+   }
+   else
+   {out('thespecies',0);
+    pp=0;
+   }
+}
+ $(function(){
+
+	 $("table.tablesorter").tablesorter({theme: "bootstrap",
+		 widthFixed: false,
+		 widgets: ['uitheme', 'zebra'],
+		 headerTemplate: '{content} {icon}'
+	 });
+	 $('[data-toggle=popover]').popover();
+	 $('[data-toggle=tooltip]').tooltip();
+	 $('input[type=text]').on('click', function() {return $(this).select()});
+//	 $('textarea').on('click', function() {return $(this).select()});
+ });
+  </script>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body >
+
+<div id="container">
+<div id="header" style="margin:0 auto;">
+<img src="image/logo2.png" usemap="#chomap2" border="0"  />
+  <map name="chomap2" id="chomap2" >
+  <area shape="rect" coords="7,10,220,133" href="index.php" alt="homepage"/>
+  </map>
+
+</div>
+<div id="navigation">
+	<nav class="navbar navbar-default" role=""navigation" style="background-color:white;">
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li ><a href="index.php">Home</a></li>
+				<li ><a href="online.php">Tools</a></li>
+				<li ><a href="search.php">Search</a></li>
+				<li ><a href="document.php">Document</a></li>
+				<li><a href="download.php">Download</a></li>
+				<li><a href="aboutus.php">Contact</a></li>
+			</ul>
+			<a class="btn btn-success help-block" href="http://bioinfo.life.hust.edu.cn/miRNASNP/index.php" target="_blank" style="color:white"><strong>miRNASNP<sup>1.0</sup></strong></a>
+			<form class="navbar-form navbar-right" role="search" action="quicksearch.php" method="get">
+				<input type="hidden" name="token" value="<?php echo $token; ?>" />
+				<div class="form-group">
+				<input type="text" class="form-control" name="terms" value="<?if($_GET['terms']=='') echo 'hsa-let-7a-5p'; else echo $_GET['terms']?>">
+				<input type="hidden" name="hash" value=<?php echo $_COOKIE['cookie']?>></input>
+				</div>
+				<button id="quick" type="submit" class="btn btn-danger" value="Quick"  data-toggle="popover" data-content="Input miRNA ID, ACC, SNP ID, or gene symbol" data-original-title="Search Notice" data-trigger="hover" data-placement="bottom">Submit</button>
+			</form>
+		</div>
+	</nav>
+
+</div>

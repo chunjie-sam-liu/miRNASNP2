@@ -10,4 +10,4 @@ J Gong, Y Tong, HM Zhang, K Wang, T Hu, G Shan, J Sun*, and AY Guo*.    Human Mu
 MicroRNAs (miRNAs) are endogenous and regulatory non-coding RNAs by targeting mRNAs for cleavage or translational repression. SNPs in pre-miRNAs or target sites will affect miRNA function and be related with diseases or biological processes. miRNASNP aims to provide a resource of the miRNA-related SNPs, which includes SNPs in pre-miRNAs of human and other species, and target gain and loss by SNPs in miRNA seed regions or 3'UTR of target mRNAs.
 
 # Databases
-![Databaes](image/Databases.png)
+![Databaes](image/databases.png)
